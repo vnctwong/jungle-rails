@@ -11,24 +11,25 @@ RSpec.describe Product, type: :model do
 
     it 'returns false if saved when name field invalid' do
       @category = Category.create!(name: 'rspecTest')
-      @product = @category.products.new(name: nil, price: 2, quantity: 2)
+      @product = @category.products.new(price: 2, quantity: 2)
       expect(@product.save).to eq false
     end
 
     it 'returns false if saved when price field invalid' do
       @category = Category.create!(name: 'rspecTest')
-      @product = @category.products.new(name: 'ex1', price: nil, quantity: 2)
+      @product = @category.products.new(name: 'ex1', quantity: 2)
       expect(@product.save).to eq false
     end
 
     it 'returns false if saved when quantity field invalid' do
       @category = Category.create!(name: 'rspecTest')
-      @product = @category.products.new(name: 'ex1', price: 2, quantity: nil)
+      @product = @category.products.new(name: 'ex1', price: 2)
       expect(@product.save).to eq false
     end
 
     it 'returns false if saved when category field invalid' do
-      @product = Product.new(name: 'ex1', price: 2, quantity: 2, category: nil)
+      # @category = Category.create!(name: 'rspecTest')
+      @product = Product.new(name: 'ex1', price: 2, quantity: 2)
       expect(@product.save).to eq false
     end
 
