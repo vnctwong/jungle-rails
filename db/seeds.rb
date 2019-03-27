@@ -33,7 +33,9 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 
 puts "Re-creating Products ..."
 
+LineItem.destroy_all
 Product.destroy_all
+User.destroy_all
 
 cat1.products.create!({
   name:  'Men\'s Classy shirt',
@@ -130,6 +132,34 @@ cat3.products.create!({
   image: open_asset('furniture3.jpg'),
   quantity: 0,
   price: 2_483.75
+})
+
+User.create!({
+  first_name: 'f1',
+  last_name: 'l1',
+  email: '1@1.com',
+  password_digest: '1',
+})
+User.create!({
+  first_name: '2',
+  last_name: '2',
+  email: '2@2.com',
+  password_digest: '2',
+})
+
+ # Reviews
+
+ Review.create!({
+  product_id: 1,
+  user_id: 1,
+  description: 'dscrp1',
+  rating: 1,
+})
+Review.create!({
+  product_id: 2,
+  user_id: 2,
+  description: 'dscrp1',
+  rating: 2,
 })
 
 
