@@ -25,7 +25,24 @@
         </dl>
       </div>
     </div>
-
   </article>
+
+  <% if current_user %>
+    <h4>Review</h4>
+      <%= form_for([@product, @review]) do |f| %>
+        <p>Rating: <%= f.select :rating, [1,2,3,4,5,6,7,8,9,10] %></p>
+        <p>Comments: <%= f.text_field :description %></p>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit "Submit" %>
+      <% end %>
+  <% end %>
+
+  <dt>Reviews</dt>
+  <% @reviews.each do |review| %>
+    <dd class="review-name"><%= User.where(id: review.user_id).first.first_name %> says<dd>
+    <dd class="review-rating"><%= review.rating %>/10</dd>
+    <dd class="review-description">"<%= review.description %>"</dd><p/>
+  <% end %>
 
 </section>
