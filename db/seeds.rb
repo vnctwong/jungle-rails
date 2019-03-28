@@ -135,14 +135,14 @@ cat3.products.create!({
 })
 
 User.create!({
-  first_name: 'f1',
-  last_name: 'l1',
+  first_name: 'first',
+  last_name: 'last',
   email: '1@1.com',
   password_digest: '1',
 })
 User.create!({
-  first_name: '2',
-  last_name: '2',
+  first_name: 'first',
+  last_name: 'last',
   email: '2@2.com',
   password_digest: '2',
 })
@@ -152,13 +152,13 @@ User.create!({
  Review.create!({
   product_id: 1,
   user_id: 1,
-  description: 'dscrp1',
+  description: 'some description',
   rating: 1,
 })
 Review.create!({
   product_id: 2,
   user_id: 2,
-  description: 'dscrp1',
+  description: 'some description',
   rating: 2,
 })
 

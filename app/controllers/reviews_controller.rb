@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_filter: logged_in
+  before_filter :logged_in
   def create 
 
     @review = Review.create(allowed_params)

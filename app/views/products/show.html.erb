@@ -14,7 +14,6 @@
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
-
           <dt>Name</dt>
           <dd><%= @product.name %></dd>
           <dt>Description</dt>
@@ -23,26 +22,27 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
-
-          <article class="new-review">
-            <h3>Write a new review</h3>
-            <%= form_for :review do |r| %>
-            <label>Review: </label>
-            <%= r.text_area :description %>
-            <label>Rating :</label>
-            <p>Rating: <%= f.select :rating, [1,2,3,4,5] %></p>
-            <%= r.submit  %>
-            <% end %>
-          </article>
-
-          <dt>Reviews</dt>
-          <% reviews.each do |review| %>
-            <%= render 'review', user: review[:user_id], description: review[:description], rating: review[:rating] %>
-          <% end %>
-
+        </dl>
       </div>
     </div>
-
   </article>
+
+  <% if current_user %>
+    <h4>Review</h4>
+      <%= form_for([@product, @review]) do |f| %>
+        <p>Rating: <%= f.select :rating, [1,2,3,4,5,6,7,8,9,10] %></p>
+        <p>Comments: <%= f.text_field :description %></p>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit "Submit" %>
+      <% end %>
+  <% end %>
+
+  <dt>Reviews</dt>
+  <% @reviews.each do |review| %>
+    <dd class="review-name"><%= User.where(id: review.user_id).first.first_name %> says<dd>
+    <dd class="review-rating"><%= review.rating %>/10</dd>
+    <dd class="review-description">"<%= review.description %>"</dd><p/>
+  <% end %>
 
 </section>
